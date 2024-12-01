@@ -394,87 +394,87 @@ public class Pageinfo
     /// <summary>
     /// 
     /// </summary>
-    public Video video { get; set; }
+    public Video Video { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Bangumi bangumi { get; set; }
+    public Bangumi Bangumi { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Special special { get; set; }
+    public Special Special { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Topic topic { get; set; }
+    public Topic Topic { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Upuser upuser { get; set; }
+    public Upuser Upuser { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Tv tv { get; set; }
+    public Tv Tv { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Movie movie { get; set; }
+    public Movie Movie { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Media_bangumi media_bangumi { get; set; }
+    public Media_bangumi Media_bangumi { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Media_ft media_ft { get; set; }
+    public Media_ft Media_ft { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Related_search related_search { get; set; }
+    public Related_search Related_search { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public User user { get; set; }
+    public User User { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Activity activity { get; set; }
+    public Activity Activity { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Operation_card operation_card { get; set; }
+    public Operation_card Operation_card { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Pgc pgc { get; set; }
+    public Pgc Pgc { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Live live { get; set; }
+    public Live Live { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Live_all live_all { get; set; }
+    public Live_all Live_all { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Live_master live_master { get; set; }
+    public Live_master Live_master { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Live_user live_user { get; set; }
+    public Live_user Live_user { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Live_room live_room { get; set; }
+    public Live_room Live_room { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Article article { get; set; }
+    public Article Article { get; set; }
     /// <summary>
     /// 
     /// </summary>
-    public Bili_user bili_user { get; set; }
+    public Bili_user Bili_user { get; set; }
 }
 
 public class Top_tlist
@@ -690,7 +690,7 @@ public class SearchRet
         /// <summary>
         /// 
         /// </summary>
-        public uint id { get; set; }
+        public UInt64 id { get; set; }
         /// <summary>
         /// 中江路押尾
         /// </summary>
@@ -698,7 +698,7 @@ public class SearchRet
         /// <summary>
         /// 
         /// </summary>
-        public int mid { get; set; }
+        public UInt64 mid { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -714,7 +714,7 @@ public class SearchRet
         /// <summary>
         /// 
         /// </summary>
-        public int aid { get; set; }
+        public UInt64 aid { get; set; }
         /// <summary>
         /// 
         /// </summary>

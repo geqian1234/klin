@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Netmusiclib.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Netmusiclib.interfaces
 {
     public interface ISearcher
     {
-        Task<ServiceResponse<string>> Search(string query,int page=1);
+        Task<ServiceResponse<FilteredSearchResultModel>> Search(string query,int page=1);
     }
 }

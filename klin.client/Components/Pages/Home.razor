@@ -11,10 +11,10 @@ Welcome to your new app.
     private string httpv = "";
     private async Task Send()
     {
-        ServiceResponse<string> ret=await searcher.Search("guiji");
+        ServiceResponse<FilteredSearchResultModel> ret=await searcher.Search("夜的第七章");
         if (ret.Status)
         {
-            httpv = ret.Value;
+         //   httpv = ret.Value;
 
         }
     }

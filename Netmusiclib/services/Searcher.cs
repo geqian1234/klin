@@ -23,7 +23,7 @@ namespace Netmusiclib.services
            _logger = logger;
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<ServiceResponse<string>> Search(string query,int page=1)
+        public async Task<ServiceResponse<FilteredSearchResultModel>> Search(string query,int page=1)
         {
             var api = GetApi();
 
@@ -35,20 +35,16 @@ namespace Netmusiclib.services
                     keyword = query,
                     page = page
                 };
-                string ret = await GetSearchResult(websearch, params_Websearch);
-                return new ServiceResponse<string>
-                {
-                    Status =true,
-                    Value = ret,
-                };
+                ServiceResponse<FilteredSearchResultModel> ret = await GetSearchResult(websearch, params_Websearch);
+                return ret;
             }
-            else return new ServiceResponse<string>
+            else return new ServiceResponse<FilteredSearchResultModel>
             {
                 Status = false
             };
             
         }
-        public async Task<string> GetSearchResult(Web_search web_Search, Params_web_search params_Web_Search)
+        public async Task<ServiceResponse<FilteredSearchResultModel>> GetSearchResult(Web_search web_Search, Params_web_search params_Web_Search)
         { 
           var httpclient=_httpClientFactory.CreateClient("bilibili");
           string url=web_Search.url;
@@ -82,12 +78,108 @@ namespace Netmusiclib.services
             try
             {
                 SearchRet? searchRet = await httpResponseMessage.Content.ReadFromJsonAsync<SearchRet>();
+                if (searchRet != null)
+                {
+                    FilteredSearchResultModel searchRetModel = new FilteredSearchResultModel()
+                    {
+                        PageInfo = searchRet.data.pageinfo,
+                    };
+                    foreach (var result in searchRet.data.result)
+                    {
+                        if (result.data.Count > 0)
+                        {
+                            Items items = new Items();
+                            items.Resulttype = result.result_type;
+                            foreach (var data in result.data)
+                            {
+                                items.ItemDatas.Add(new ItemData
+                                {
+                                    Aid = data.aid,
+                                    Arcrank = data.arcrank,
+                                    Type = data.type,
+                                    Id = data.id,
+                                    Author = data.author,
+                                    Mid = data.mid,
+                                    Typeid = data.typeid,
+                                    Typename=data.typename,
+                                    Arcurl=data.arcurl,
+                                    Bvid=data.bvid,
+                                    Title=data.title,
+                                    Description=data.description,
+                                    Pic=data.pic,
+                                    Play=data.play,
+                                    Video_review=data.video_review,
+                                    Favorites=data.favorites,
+                                    Tag=data.tag,
+                                    Review=data.review,
+                                    Pubdate=data.pubdate,
+                                    Senddate=data.senddate,
+                                    Duration=data.duration,
+                                    Badgepay=data.badgepay,
+                                    Hit_columns=data.hit_columns,
+                                    View_type=data.view_type,
+                                    Is_pay=data.is_pay,
+                                    Is_union_video=data.is_union_video,
+                                    Rec_tags=data.rec_tags,
+                                    New_rec_tags=data.new_rec_tags,
+                                    Rank_score=data.rank_score,
+                                    Like=data.like,
+                                    Upic=data.upic,
+                                    Corner=data.corner,
+                                    Cover=data.cover,
+                                    Desc=data.desc,
+                                    Url=data.url,
+                                    Rec_reason=data.rec_reason,
+                                    Danmaku=data.danmaku,
+                                    Biz_data=data.biz_data,
+                                    Is_charge_video=data.is_charge_video,
+                                    Vt=data.vt,
+                                    Enable_vt=data.enable_vt,
+                                    Vt_display=data.vt_display,
+                                    Subtitle=data.subtitle,
+                                    Episode_count_text=data.episode_count_text,
+                                    Release_status=data.release_status,
+                                    Is_intervene=data.is_intervene,
+                                    Area=data.area,
+                                    Style=data.style,
+                                    Cate_name=data.cate_name,
+                                    Is_live_room_inline=data.is_live_room_inline,
+                                    Live_status=data.live_status,
+                                    Live_time=data.live_time,
+                                    Online=data.online,
+                                    Rank_index=data.rank_index,
+                                    Rank_offset=data.rank_offset,
+                                    Roomid=data.roomid,
+                                    Short_id=data.short_id,
+                                    Spread_id=data.spread_id,
+                                    Tags=data.tags,
+                                    Uface=data.uface,
+                                    Uid=data.uid,
+                                    Uname=data.uname  ,
+                                    User_cover=data.user_cover,
+                                    Parent_area_id=data.parent_area_id,
+                                    Parent_area_name=data.parent_area_name,
+                                    Watched_show=data.watched_show,
+                                });                                 
+                            }
+                            searchRetModel.Items.Add(items);
+                        }
+                    
+                    }
+                    return new ServiceResponse<FilteredSearchResultModel>()
+                    {
+                        Value = searchRetModel,
+                        Status = true,
+                    };
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            return await httpResponseMessage.Content.ReadAsStringAsync();
+            return new ServiceResponse<FilteredSearchResultModel>() { 
+               Status = false,
+            };
         }
 
         public Task<ServiceResponse<string>> Search(string query)
