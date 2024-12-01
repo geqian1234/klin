@@ -1,5 +1,23 @@
 ﻿@page "/"
-
-<h1>Hello, world!</h1>
-
+@inject ISearcher searcher
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudButton Variant="Variant.Filled" OnClick="Send">Default</MudButton>
+<MudText>@httpv</MudText>
 Welcome to your new app.
+
+
+@code{
+    private string httpv = "";
+    private async Task Send()
+    {
+        ServiceResponse<string> ret=await searcher.Search("夜的第七章");
+        if (ret.Status)
+        {
+            httpv = ret.Value;
+
+        }
+    }
+
+
+}

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
+using Netmusiclib;
 
 namespace klin.client
 {
@@ -15,7 +17,10 @@ namespace klin.client
                 });
 
             builder.Services.AddMauiBlazorWebView();
-
+            builder.Services.AddNetMusiclib();
+            builder.Services.AddMudServices();
+            builder.Services.AddHttpClient();
+            builder.Services.AddLogging();
 #if DEBUG
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
