@@ -794,7 +794,7 @@ public class SearchRet
         /// <summary>
         /// 
         /// </summary>
-        public List<string> new_rec_tags { get; set; }
+        public List<object> new_rec_tags { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -1,8 +1,17 @@
-﻿
+﻿@inject ISearcher searcher
 
 <MudIcon Icon="@Icons.Material.Filled.Search"></MudIcon>
-<MudTextField T="string" Label="OnFocus Helper" HelperText="Some helping text" HelperTextOnFocus="true" Variant="Variant.Text" />
-
+<MudTextField T="string" @bind-Value="@searchitem" Label="OnFocus Helper" HelperText="Some helping text" HelperTextOnFocus="true" Variant="Variant.Text" />
+<MudButton  OnClick="SearchFunc" Color="@Color.Secondary"/>
 @code {
+    private string searchitem = string.Empty;
+    private async Task SearchFunc()
+    {
+        ServiceResponse<FilteredSearchResultModel> ret = await searcher.Search(searchitem);
+        if (ret.Status)
+        {
+            //   httpv = ret.Value;
 
+        }
+    }
 }

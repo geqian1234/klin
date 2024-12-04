@@ -124,7 +124,7 @@ namespace Netmusiclib.Model
         /// <summary>
         /// 
         /// </summary>
-        public List<string> New_rec_tags { get; set; } = new List<string>();
+        public List<object> New_rec_tags { get; set; } = new List<object>();
         /// <summary>
         /// 
         /// </summary>

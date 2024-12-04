@@ -43,7 +43,7 @@ namespace klin.client
                 {
                     return new HttpClientHandler()
                     {
-                        AutomaticDecompression = System.Net.DecompressionMethods.GZip
+                        AutomaticDecompression = System.Net.DecompressionMethods.All
                     };
                 }
                 );
